@@ -2,6 +2,8 @@
 
 A modern web application for exploring and analyzing company data, built with Next.js and Supabase.
 
+Production link: https://tidemark-next-case.vercel.app/
+
 ## Features
 
 - 🔐 **Authentication**: Secure sign-in/sign-up with email verification
