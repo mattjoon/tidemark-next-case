@@ -429,7 +429,7 @@ function CompanyListWrapper({ companies }: { companies: Company[] }) {
                             </HoverCard>
                           ) : column.key === 'KEYWORDS' ? (
                             <div className="flex flex-wrap gap-1">
-                              {company.KEYWORDS.split(',').slice(0, 3).map((keyword, i) => (
+                              {(company.KEYWORDS || '').split(',').slice(0, 3).map((keyword, i) => (
                                 <span 
                                   key={i}
                                   className="inline-flex items-center rounded-full bg-blue-100 px-2 py-0.5 text-xs font-medium text-blue-800"
@@ -437,9 +437,6 @@ function CompanyListWrapper({ companies }: { companies: Company[] }) {
                                   {keyword.trim()}
                                 </span>
                               ))}
-                              {company.KEYWORDS.split(',').length > 3 && (
-                                <span className="text-sm text-muted-foreground">+{company.KEYWORDS.split(',').length - 3} more</span>
-                              )}
                             </div>
                           ) : (
                             company[column.key]
