@@ -57,6 +57,7 @@ interface Company {
   HEADCOUNT_CHANGE_3M?: string | number;
   HEADCOUNT_CHANGE_6M?: string | number;
   HEADCOUNT_CHANGE_1Y?: string | number;
+  INDUSTRY?: string;
 }
 
 type SortConfig = {
@@ -171,8 +172,7 @@ function CompanyListWrapper({ companies }: { companies: Company[] }) {
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState<PageSize>(10);
-  const [visibleColumns, setVisibleColumns] = useState<string[]>(["NAME", "HEADCOUNT", "YEAR_FOUNDED", "HQ_LOCATION"]);
-  const [headcountFilter, setHeadcountFilter] = useState("all");
+  const [visibleColumns, setVisibleColumns] = useState<string[]>(["NAME", "HEADCOUNT", "HEADCOUNT_CHANGE_6M", "YEAR_FOUNDED", "HQ_LOCATION"]);
   const [keywordSearch, setKeywordSearch] = useState('');
   const [sortConfig, setSortConfig] = useState<SortConfig>({ key: 'HEADCOUNT', direction: 'desc' });
   const [timeFrame, setTimeFrame] = useState<TimeFrame>('6M');
@@ -237,36 +237,18 @@ function CompanyListWrapper({ companies }: { companies: Company[] }) {
     });
   };
 
-  const filterByHeadcount = (company: Company) => {
-    const headcount = typeof company.HEADCOUNT === 'string' 
-      ? parseInt(company.HEADCOUNT, 10) 
-      : company.HEADCOUNT;
+  // Filter companies based on search
+  const filteredCompanies = companiesData.filter((company) => {
+    const matchesSearch =
+      company.NAME.toLowerCase().includes(searchQuery.toLowerCase()) 
 
-    if (isNaN(Number(headcount))) return true;
-    const numericHeadcount = Number(headcount);
+    const matchesKeywords =
+      !keywordSearch ||
+      (company.KEYWORDS &&
+        company.KEYWORDS.toLowerCase().includes(keywordSearch.toLowerCase()))
 
-    switch (headcountFilter) {
-      case "1-10":
-        return numericHeadcount >= 1 && numericHeadcount <= 10;
-      case "11-50":
-        return numericHeadcount >= 11 && numericHeadcount <= 50;
-      case "51-200":
-        return numericHeadcount >= 51 && numericHeadcount <= 200;
-      case "201-500":
-        return numericHeadcount >= 201 && numericHeadcount <= 500;
-      case "501+":
-        return numericHeadcount >= 501;
-      default:
-        return true;
-    }
-  };
-
-  // Filter companies based on search and headcount
-  const filteredCompanies = companies
-    .filter(company => 
-      company.NAME.toLowerCase().includes(searchQuery.toLowerCase()) &&
-      filterByHeadcount(company)
-    );
+    return matchesSearch && matchesKeywords;
+  });
 
   const getHeadcountChangeValue = (company: Company, timeFrame: TimeFrame) => {
     const value = company[timeFrame === '3M' ? 'HEADCOUNT_CHANGE_3M' :
@@ -315,19 +297,6 @@ function CompanyListWrapper({ companies }: { companies: Company[] }) {
               </SelectContent>
             </Select>
           </div>
-          <Select value={headcountFilter} onValueChange={setHeadcountFilter}>
-            <SelectTrigger className="w-[200px]">
-              <SelectValue placeholder="Filter by headcount" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">All</SelectItem>
-              <SelectItem value="1-10">1-10</SelectItem>
-              <SelectItem value="11-50">11-50</SelectItem>
-              <SelectItem value="51-200">51-200</SelectItem>
-              <SelectItem value="201-500">201-500</SelectItem>
-              <SelectItem value="501+">501+</SelectItem>
-            </SelectContent>
-          </Select>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="outline" size="icon">
