@@ -18,7 +18,7 @@ Production link: https://tidemark-next-case.vercel.app/
 - **Database**: [Supabase](https://supabase.com/) (PostgreSQL)
 - **Authentication**: Supabase Auth
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/)
-- **UI Components**: Custom components with Radix UI primitives
+- **UI Components**: Custom components with Radix/Shadcn UI primitives
 - **State Management**: React Query for data fetching
 - **Form Handling**: React Hook Form with Zod validation
 
@@ -61,7 +61,7 @@ Production link: https://tidemark-next-case.vercel.app/
    ```bash
    cp .env.example .env.local
    ```
-   Fill in your Supabase credentials in `.env.local`
+   Fill in your Supabase credentials in `.env.local`. Need NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY.
 
 4. Run the development server:
    ```bash
