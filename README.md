@@ -125,4 +125,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 Matthew Lee - [msjlee@berkeley.edu](mailto:msjlee@berkeley.edu)
 
-Project Link: [https://github.com/mattjoon/tidemark-next](https://github.com/mattjoon/tidemark-next)
+Project Link: [https://github.com/mattjoon/tidemark-next-case/tree/main](https://github.com/mattjoon/tidemark-next-case/tree/main)
