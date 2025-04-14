@@ -121,6 +121,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Contact
 
-Matthew Lee - [mattsjlee@berkeley.edu](mailto:mattsjlee@berkeley.edu)
+Matthew Lee - [msjlee@berkeley.edu](mailto:msjlee@berkeley.edu)
 
-Project Link: [https://github.com/mattsjlee/tidemark-next](https://github.com/mattsjlee/tidemark-next)
+Project Link: [https://github.com/mattjoon/tidemark-next](https://github.com/mattjoon/tidemark-next)
