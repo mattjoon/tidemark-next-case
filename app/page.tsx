@@ -18,7 +18,7 @@ export default function Home() {
         </p>
         <div className="flex items-center gap-4 text-sm text-muted-foreground">
           <a 
-            href="https://github.com/mattsjlee/tidemark-next"
+            href="https://github.com/mattjoon/tidemark-next-case"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-foreground transition-colors"
